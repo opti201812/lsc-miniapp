@@ -1,0 +1,95 @@
+/* pages/profile/competition/index.wxss */
+.container {
+   background: #f5f5f5;
+   min-height: 100vh;
+   padding: 20rpx;
+}
+
+.tournament-item {
+   background: #fff;
+   border-radius: 12rpx;
+   margin-bottom: 20rpx;
+   padding: 30rpx;
+}
+
+.tournament-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.tournament-name {
+   font-size: 32rpx;
+   font-weight: bold;
+   color: #333;
+   margin-bottom: 12rpx;
+}
+
+.tournament-meta {
+   font-size: 26rpx;
+   color: #666;
+}
+
+.tournament-meta text {
+   margin-right: 20rpx;
+}
+
+.result {
+   color: #07c160;
+}
+
+.arrow {
+   width: 32rpx;
+   height: 32rpx;
+   transition: transform 0.3s;
+}
+
+.arrow-down {
+   transform: rotate(90deg);
+}
+
+.match-records {
+   margin-top: 20rpx;
+   border-top: 1rpx solid #eee;
+   padding-top: 20rpx;
+}
+
+.match-item {
+   display: flex;
+   flex-direction: column;
+   padding: 16rpx 0;
+   border-bottom: 1rpx solid #f5f5f5;
+}
+
+.match-round {
+   font-size: 28rpx;
+   color: #666;
+   margin-bottom: 8rpx;
+}
+
+.match-info {
+   display: flex;
+   align-items: center;
+   font-size: 28rpx;
+}
+
+.match-score {
+   margin: 0 20rpx;
+   color: #333;
+}
+
+.match-result {
+   padding: 4rpx 12rpx;
+   border-radius: 4rpx;
+   font-size: 24rpx;
+}
+
+.win {
+   color: #07c160;
+   background: rgba(7, 193, 96, 0.1);
+}
+
+.lose {
+   color: #f5222d;
+   background: rgba(245, 34, 45, 0.1);
+}

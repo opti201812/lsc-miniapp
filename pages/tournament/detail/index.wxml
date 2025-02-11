@@ -1,0 +1,108 @@
+<view class="container">
+    <!-- 页头区域 -->
+    <view class="header">
+        <image class="banner" src="{{tournamentInfo.banner}}" mode="aspectFill"></image>
+        <view class="registered-count" bindtap="onRegisteredListTap">
+            <text>已报名：{{tournamentInfo.registeredCount || 0}}人</text>
+            <view class="arrow">></view>
+        </view>
+    </view>
+
+    <!-- 标签页 -->
+    <view class="tabs">
+        <view class="tab {{currentTab === 'info' ? 'active' : ''}}" 
+              bindtap="switchTab" 
+              data-tab="info">赛事信息</view>
+        <view class="tab {{currentTab === 'schedule' ? 'active' : ''}}" 
+              bindtap="switchTab" 
+              data-tab="schedule">赛程安排</view>
+    </view>
+
+    <!-- 赛事信息标签页 -->
+    <view class="tab-content" hidden="{{currentTab !== 'info'}}">
+        <!-- 赛事基本信息 -->
+        <view class="tournament-info">
+            <view class="info-item">
+                <text class="label">比赛项目：</text>
+                <text class="content">{{tournamentInfo.project}}</text>
+            </view>
+            <view class="info-item">
+                <text class="label">比赛时间：</text>
+                <text class="content">{{tournamentInfo.matchTime}}</text>
+            </view>
+            <view class="info-item">
+                <text class="label">报名时间：</text>
+                <text class="content">{{tournamentInfo.registerTime}}</text>
+            </view>
+        </view>
+
+        <!-- 奖金设置部分 -->
+        <view class="prize-section">
+            <view class="section-title">奖金设置</view>
+            <view class="prize-content">{{tournamentInfo.prizeInfo}}</view>
+        </view>
+
+        <!-- 赛事说明部分 -->
+        <view class="description-section">
+            <view class="section-title">赛事说明</view>
+            <view class="description-content">{{tournamentInfo.description}}</view>
+        </view>
+
+        <!-- 比赛规则部分 -->
+        <view class="rules-section">
+            <view class="section-title">比赛规则</view>
+            <view class="rules-content">{{tournamentInfo.rules}}</view>
+        </view>
+    </view>
+
+    <!-- 赛程安排标签页 -->
+    <view class="tab-content" hidden="{{currentTab !== 'schedule'}}">
+        <view class="schedule-list">
+            <view class="match-item" wx:for="{{scheduleInfo}}" wx:key="round">
+                <view class="round-header">{{item.round}} - {{item.time}}</view>
+                <view class="match-list">
+                    <view class="match" wx:for="{{item.matches}}" wx:for-item="match" wx:key="id">
+                        <view class="match-row" bindtap="{{match.status === 'ongoing' ? 'onMatchTap' : ''}}" data-id="{{match.id}}">
+                            <view class="table-info">
+                                <text>{{match.tableNumber}}号台</text>
+                                <text class="match-time">{{match.time}}</text>
+                                <text wx:if="{{match.status === 'ongoing'}}" class="ongoing-icon">进行中</text>
+                            </view>
+                            <view class="match-content">
+                                <view class="players">
+                                    <view class="player-name {{match.player1.isWinner ? 'winner' : ''}}">
+                                        <text>{{match.player1.name}}</text>
+                                        <text class="level">({{match.player1.level}})</text>
+                                    </view>
+                                    <text class="score-divider">:</text>
+                                    <view class="player-name {{match.player2.isWinner ? 'winner' : ''}}">
+                                        <text>{{match.player2.name}}</text>
+                                        <text class="level">({{match.player2.level}})</text>
+                                    </view>
+                                </view>
+                                <text wx:if="{{match.status !== 'pending'}}" class="match-scores">
+                                    <text>{{match.player1.score}}</text>
+                                    <text class="score-divider">:</text>
+                                    <text>{{match.player2.score}}</text>
+                                </text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="footer-action" wx:if="{{status === 'upcoming'}}">
+        <text class="upcoming-text">敬请期待</text>
+    </view>
+    
+    <view class="footer-action" wx:elif="{{status === 'registering'}}">
+        <button type="primary" bindtap="onRegister">立即报名</button>
+    </view>
+    
+    <view class="footer-action" wx:elif="{{status === 'ongoing'}}">
+        <button type="primary" bindtap="onEnterMatch">进入赛场</button>
+    </view>
+</view> 

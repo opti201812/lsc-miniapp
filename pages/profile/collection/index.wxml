@@ -1,0 +1,17 @@
+<view class="container">
+    <view class="player-list">
+        <view class="player-item" wx:for="{{followedPlayers}}" wx:key="id" bindtap="onPlayerTap" data-id="{{item.id}}">
+            <view class="player-info">
+                <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+                <view class="info-right">
+                    <view class="name">{{item.name}}</view>
+                    <view class="meta">
+                        <text class="level">{{item.level}}档</text>
+                        <text class="stats">胜率 {{item.winRate}}%</text>
+                    </view>
+                </view>
+            </view>
+            <view class="arrow">></view>
+        </view>
+    </view>
+</view> 

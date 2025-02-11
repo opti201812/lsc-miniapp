@@ -1,0 +1,157 @@
+<view class="container">
+    <!-- 页头区域 -->
+    <view class="header">
+        <view class="match-time">{{matchInfo.time}}</view>
+        <view class="match-score">
+            <view class="player {{matchInfo.player1.isWinner ? 'winner' : ''}}">
+                <image class="avatar" src="{{matchInfo.player1.avatar}}" mode="aspectFill"></image>
+                <text class="name">{{matchInfo.player1.name}}</text>
+            </view>
+            <view class="score-box">
+                <view class="scores">
+                    <text class="score">{{matchInfo.player1.score || 0}}</text>
+                    <text class="divider">-</text>
+                    <text class="score">{{matchInfo.player2.score || 0}}</text>
+                </view>
+                <view class="score-actions" wx:if="{{matchInfo.status === 'ongoing'}}">
+                    <view class="edit-score" bindtap="showScoreEditor">
+                        <text class="edit-icon">✎</text>
+                        <text>编辑比分</text>
+                    </view>
+                </view>
+                <text class="status">{{matchInfo.status === 'ongoing' ? '进行中' : 
+                    matchInfo.status === 'completed' ? '已结束' : '未开始'}}</text>
+            </view>
+
+            <!-- 比分编辑弹窗 -->
+            <view class="score-editor {{showScoreEditor ? 'show' : ''}}" catchtouchmove="preventTouchMove">
+                <view class="editor-mask" bindtap="hideScoreEditor"></view>
+                <view class="editor-content">
+                    <view class="editor-header">
+                        <text>编辑比分</text>
+                        <text class="close-btn" bindtap="hideScoreEditor">×</text>
+                    </view>
+                    <view class="editor-body">
+                        <view class="player-score">
+                            <text class="player-name">{{matchInfo.player1.name}}</text>
+                            <view class="score-control">
+                                <text class="score-btn" bindtap="adjustScore" data-player="player1" data-action="minus">-</text>
+                                <text class="score-value">{{tempScores.player1}}</text>
+                                <text class="score-btn" bindtap="adjustScore" data-player="player1" data-action="plus">+</text>
+                            </view>
+                        </view>
+                        <view class="score-divider">vs</view>
+                        <view class="player-score">
+                            <text class="player-name">{{matchInfo.player2.name}}</text>
+                            <view class="score-control">
+                                <text class="score-btn" bindtap="adjustScore" data-player="player2" data-action="minus">-</text>
+                                <text class="score-value">{{tempScores.player2}}</text>
+                                <text class="score-btn" bindtap="adjustScore" data-player="player2" data-action="plus">+</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="editor-footer">
+                        <button class="cancel-btn" bindtap="hideScoreEditor">取消</button>
+                        <button class="confirm-btn" bindtap="confirmScore">确定</button>
+                    </view>
+                </view>
+            </view>
+
+            <view class="player {{matchInfo.player2.isWinner ? 'winner' : ''}}">
+                <image class="avatar" src="{{matchInfo.player2.avatar}}" mode="aspectFill"></image>
+                <text class="name">{{matchInfo.player2.name}}</text>
+            </view>
+        </view>
+    </view>
+
+    <!-- 标签页 -->
+    <view class="tabs">
+        <view class="tab {{currentTab === 'detail' ? 'active' : ''}}" 
+              bindtap="switchTab" 
+              data-tab="detail">对阵详情</view>
+        <view class="tab {{currentTab === 'history' ? 'active' : ''}}" 
+              bindtap="switchTab" 
+              data-tab="history">历史交锋</view>
+    </view>
+
+    <!-- 对阵详情标签页 -->
+    <view class="tab-content" hidden="{{currentTab !== 'detail'}}">
+        <!-- 比赛信息 -->
+        <view class="match-info">
+            <view class="info-item">
+                <text class="label">比赛名称：</text>
+                <text class="content">{{matchInfo.tournamentName}}</text>
+            </view>
+            <view class="info-item">
+                <text class="label">当前轮次：</text>
+                <text class="content">{{matchInfo.round}}</text>
+            </view>
+        </view>
+
+        <!-- 竞猜区域 -->
+        <view class="guess-section">
+            <view class="section-title">谁将获胜？</view>
+            <view class="guess-options">
+                <view class="guess-option {{guessChoice === 'player1' ? 'selected' : ''}}" 
+                      bindtap="onGuess" data-player="player1">
+                    <text class="player-name">{{matchInfo.player1.name}}</text>
+                    <text class="vote-percent">{{matchInfo.player1.votePercent}}%</text>
+                </view>
+                <view class="guess-option {{guessChoice === 'player2' ? 'selected' : ''}}" 
+                      bindtap="onGuess" data-player="player2">
+                    <text class="player-name">{{matchInfo.player2.name}}</text>
+                    <text class="vote-percent">{{matchInfo.player2.votePercent}}%</text>
+                </view>
+            </view>
+            <text class="vote-count">共{{matchInfo.totalVotes}}人参与竞猜</text>
+        </view>
+
+        <!-- 评论列表 -->
+        <view class="comments-section">
+            <view class="section-title">评论</view>
+            <view class="comment-list">
+                <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+                    <image class="comment-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+                    <view class="comment-content">
+                        <view class="comment-header">
+                            <text class="comment-name">{{item.name}}</text>
+                            <text class="comment-time">{{item.time}}</text>
+                        </view>
+                        <text class="comment-text">{{item.content}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 历史交锋标签页 -->
+    <view class="tab-content" hidden="{{currentTab !== 'history'}}">
+        <view class="history-list">
+            <view class="history-item" wx:for="{{historyMatches}}" wx:key="id">
+                <view class="history-header">
+                    <text class="tournament-name">{{item.tournamentName}}</text>
+                    <text class="match-time">{{item.time}}</text>
+                </view>
+                <view class="history-detail">
+                    <text class="round">{{item.round}}</text>
+                    <view class="score-info">
+                        <text class="{{item.winner === matchInfo.player1.name ? 'winner' : ''}}">
+                            {{matchInfo.player1.name}}
+                        </text>
+                        <text class="score">{{item.score1}} - {{item.score2}}</text>
+                        <text class="{{item.winner === matchInfo.player2.name ? 'winner' : ''}}">
+                            {{matchInfo.player2.name}}
+                        </text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 底部评论按钮 -->
+    <view class="footer-action">
+        <view class="comment-input">
+            <input placeholder="写评论..." bindtap="showCommentModal" disabled />
+        </view>
+    </view>
+</view> 

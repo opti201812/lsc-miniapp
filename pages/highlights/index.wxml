@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="highlights-list">
+    <view class="highlight-item" wx:for="{{highlights}}" wx:key="id">
+      <image class="highlight-image" src="{{item.imageUrl}}" mode="aspectFill" />
+      <view class="highlight-info">
+        <view class="highlight-title">{{item.title}}</view>
+        <view class="highlight-desc">{{item.description}}</view>
+        <view class="highlight-meta">
+          <text class="highlight-date">{{item.date}}</text>
+          <text class="highlight-views">{{item.views}}次观看</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

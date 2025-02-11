@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="tournament-list">
+    <view class="tournament-item" 
+          wx:for="{{tournaments}}" 
+          wx:key="id" 
+          bindtap="onTournamentTap"
+          data-id="{{item.id}}">
+      <view class="tournament-status status-completed">已结束</view>
+      <view class="tournament-content">
+        <image class="tournament-icon" src="{{item.icon}}" mode="aspectFit" />
+        <view class="tournament-info">
+          <view class="tournament-name">{{item.name}}</view>
+          <view class="tournament-organizer">{{item.organizer}}</view>
+          <view class="tournament-date">{{item.date}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

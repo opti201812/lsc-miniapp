@@ -1,0 +1,73 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <mp-searchbar bindsearch="onSearch" placeholder="搜索赛事" />
+  
+  <!-- 轮播图 -->
+  <swiper class="banner" indicator-dots autoplay circular>
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image src="{{item.imageUrl}}" mode="aspectFill" class="banner-image" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 跑马灯公告 -->
+  <view class="notice-bar">
+    <view class="notice-icon">📢</view>
+    <swiper class="notice-swiper" vertical autoplay circular interval="3000">
+      <swiper-item wx:for="{{notices}}" wx:key="id">
+        <view class="notice-item" bindtap="onNoticeTap" data-id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.url}}">
+          {{item.text}}
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 快捷菜单 -->
+  <view class="quick-menu">
+    <mp-grids grids="{{quickMenus}}" />
+  </view>
+
+  <!-- 焦点赛事 -->
+  <view class="section">
+    <mp-cells title="焦点赛事">
+      <mp-cell wx:for="{{focusEvents}}" wx:key="id" hover data-id="{{item.id}}" data-status="{{item.status}}" bindtap="onTournamentTap">
+        <view class="event-item">
+          <image src="{{item.icon}}" class="event-icon" />
+          <view class="event-info">
+            <view class="event-name">{{item.name}}</view>
+            <view class="event-detail">
+              <text class="event-organizer">{{item.organizer}}</text>
+              <text class="event-time">{{item.time}}</text>
+            </view>
+            <view class="event-status status-{{item.status}}">
+              {{item.status === 'upcoming' ? '即将开始' : 
+                item.status === 'registering' ? '报名中' :
+                item.status === 'ongoing' ? '比赛中' : '已结束'}}
+            </view>
+          </view>
+        </view>
+      </mp-cell>
+    </mp-cells>
+  </view>
+
+  <!-- 分隔区域 -->
+  <view class="section-divider">
+    <text class="divider-text">系列积分赛</text>
+  </view>
+
+  <!-- 系列赛专区 -->
+  <view class="section">
+    <mp-cells title="热门系列赛">
+      <mp-cell wx:for="{{seriesEvents}}" wx:key="id" hover data-id="{{item.id}}" bindtap="onSeriesTap">
+        <view class="event-item">
+          <image src="{{item.logo}}" class="event-icon" />
+          <view class="event-info">
+            <view class="event-name">{{item.name}}</view>
+            <view class="event-detail">
+              <text class="event-organizer">第{{item.currentStation || 0}}/{{item.totalStation || 12}}站</text>
+            </view>
+          </view>
+        </view>
+      </mp-cell>
+    </mp-cells>
+  </view>
+</view> 

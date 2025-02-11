@@ -1,0 +1,115 @@
+<view class="container">
+    <!-- 顶部个人信息 -->
+    <view class="profile-header">
+        <view class="profile-info">
+            <image class="avatar" src="{{playerInfo.avatar}}" mode="aspectFill"></image>
+            <view class="info-right">
+                <view class="name">{{playerInfo.name}}</view>
+                <view class="level">{{playerInfo.level}}档</view>
+            </view>
+        </view>
+        <view class="follow-section">
+            <button class="btn-follow {{playerInfo.isFollowed ? 'followed' : ''}}" bindtap="onFollowTap">
+                {{playerInfo.isFollowed ? '已关注' : '关注'}}
+            </button>
+            <view class="followers">{{playerInfo.followers}}人关注</view>
+        </view>
+    </view>
+
+    <!-- 标签页 -->
+    <view class="tabs">
+        <view class="tab {{currentTab === 'summary' ? 'active' : ''}}" 
+              bindtap="switchTab" 
+              data-tab="summary">战绩汇总</view>
+        <view class="tab {{currentTab === 'detail' ? 'active' : ''}}" 
+              bindtap="switchTab" 
+              data-tab="detail">战绩详情</view>
+    </view>
+
+    <!-- 战绩汇总 -->
+    <view class="tab-content" hidden="{{currentTab !== 'summary'}}">
+        <!-- 总体战绩 -->
+        <view class="stats-section">
+            <view class="stat-item">
+                <text class="number">{{playerInfo.stats.totalMatches}}</text>
+                <text class="label">总场次</text>
+            </view>
+            <view class="stat-item">
+                <text class="number">{{playerInfo.stats.winRate}}%</text>
+                <text class="label">胜率</text>
+            </view>
+        </view>
+
+        <!-- 对手胜率图表 -->
+        <view class="chart-section">
+            <view class="section-title">对阵胜率</view>
+            <view class="opponent-chart">
+                <view class="chart-item" wx:for="{{playerInfo.opponentStats}}" wx:key="id">
+                    <image class="opponent-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+                    <view class="chart-bar-container">
+                        <view class="chart-bar {{item.winRate > 50 ? 'high' : 'low'}}" 
+                              style="height: {{item.winRate}}%"></view>
+                        <view class="baseline"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 近期赛程 -->
+        <view class="upcoming-section">
+            <view class="section-title">近期赛程</view>
+            <view class="upcoming-list">
+                <view class="upcoming-item" wx:for="{{playerInfo.upcomingMatches}}" wx:key="id">
+                    <view class="match-info">
+                        <text class="match-date">{{item.date}}</text>
+                        <text class="match-name">{{item.name}}</text>
+                    </view>
+                    <view class="match-players">
+                        <view class="player">
+                            <image class="small-avatar" src="{{item.player1.avatar}}" mode="aspectFill"></image>
+                            <text>{{item.player1.name}}</text>
+                        </view>
+                        <text class="vs">vs</text>
+                        <view class="player">
+                            <image class="small-avatar" src="{{item.player2.avatar}}" mode="aspectFill"></image>
+                            <text>{{item.player2.name}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 战绩详情 -->
+    <view class="tab-content" hidden="{{currentTab !== 'detail'}}">
+        <view class="history-list">
+            <view class="tournament-group" wx:for="{{groupedHistory}}" wx:key="tournamentName" wx:for-item="tournament">
+                <view class="tournament-header">
+                    <text class="tournament-name">{{tournament.tournamentName}}</text>
+                </view>
+                <view class="match-items">
+                    <view class="history-item" wx:for="{{tournament.matches}}" wx:key="id">
+                        <view class="match-header">
+                            <view class="match-info">
+                                <text class="match-round">{{item.round}}</text>
+                                <text class="match-date">{{item.date}}</text>
+                            </view>
+                        </view>
+                        <view class="match-content">
+                            <view class="player {{item.result === 'win' ? 'winner' : ''}}">
+                                <image class="small-avatar" src="{{item.player1.avatar}}" mode="aspectFill"></image>
+                                <text>{{item.player1.name}}</text>
+                                <text class="score">{{item.player1.score}}</text>
+                            </view>
+                            <view class="player {{item.result === 'lose' ? 'winner' : ''}}">
+                                <image class="small-avatar" src="{{item.player2.avatar}}" mode="aspectFill"></image>
+                                <text>{{item.player2.name}}</text>
+                                <text class="score">{{item.player2.score}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> 

@@ -1,0 +1,70 @@
+<view class="container">
+    <!-- 赛事信息 -->
+    <view class="tournament-info">
+        <view class="title">{{tournament.name}}</view>
+        <view class="info-item">
+            <text class="label">比赛时间：</text>
+            <text class="value">{{tournament.startTime}} 至 {{tournament.endTime}}</text>
+        </view>
+        <view class="info-item">
+            <text class="label">比赛地点：</text>
+            <text class="value">{{tournament.location}}</text>
+        </view>
+        <view class="info-item">
+            <text class="label">报名费用：</text>
+            <text class="value price">￥{{tournament.registrationFee}}</text>
+        </view>
+    </view>
+
+    <!-- 报名信息 -->
+    <view class="registration-info">
+        <view class="section-title">报名信息</view>
+        <view class="info-item">
+            <text class="label">选手姓名：</text>
+            <text class="value">{{userInfo.name}}</text>
+        </view>
+        <view class="info-item">
+            <text class="label">选手级别：</text>
+            <text class="value">{{userInfo.level}}档</text>
+        </view>
+    </view>
+
+    <!-- 报名须知 -->
+    <view class="notice">
+        <view class="section-title">报名须知</view>
+        <view class="notice-content">
+            <text>1. 请确认个人信息准确无误</text>
+            <text>2. 报名成功后将无法退款</text>
+            <text>3. 请在比赛开始前到达比赛场地</text>
+        </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="footer">
+        <view class="total-amount">
+            <text>实付金额：</text>
+            <text class="price">￥{{tournament.registrationFee}}</text>
+        </view>
+        <button class="btn-submit" type="primary" bindtap="handleSubmit">确认报名并支付</button>
+    </view>
+
+    <!-- 支付确认弹窗 -->
+    <view class="payment-modal {{showPayment ? 'show' : ''}}">
+        <view class="modal-mask" bindtap="closePayment"></view>
+        <view class="modal-content">
+            <view class="modal-header">
+                <text>微信支付</text>
+                <text class="close" bindtap="closePayment">×</text>
+            </view>
+            <view class="modal-body">
+                <view class="amount">￥{{tournament.registrationFee}}</view>
+                <view class="qrcode" wx:if="{{qrCode}}">
+                    <image src="{{qrCode}}" mode="aspectFit"></image>
+                </view>
+                <view class="loading" wx:else>
+                    <text>正在生成支付信息...</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> 

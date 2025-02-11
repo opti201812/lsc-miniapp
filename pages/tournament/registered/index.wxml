@@ -1,0 +1,24 @@
+<view class="container">
+    <!-- 标题区域 -->
+    <view class="header">
+        <view class="title">{{tournamentInfo.name}}</view>
+        <view class="total">已报名：{{registeredPlayers.length}}人</view>
+    </view>
+
+    <!-- 选手列表 -->
+    <view class="player-list">
+        <view class="player-item" wx:for="{{registeredPlayers}}" wx:key="id" bindtap="onPlayerTap" data-id="{{item.id}}">
+            <view class="player-info">
+                <view class="player-number">{{index + 1}}</view>
+                <image class="player-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+                <view class="player-detail">
+                    <view class="player-name">{{item.name}}</view>
+                    <view class="player-meta">
+                        <text class="player-level">{{item.level}}档</text>
+                        <text class="register-time">{{item.registerTime}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> 

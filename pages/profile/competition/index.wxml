@@ -1,0 +1,37 @@
+<!--pages/profile/competition/index.wxml-->
+<view class="container">
+    <view class="tournament-list">
+        <view class="tournament-item" 
+              wx:for="{{tournaments}}" 
+              wx:key="id"
+              bindtap="onTournamentTap"
+              data-id="{{item.id}}">
+            <view class="tournament-header">
+                <view class="tournament-info">
+                    <view class="tournament-name">{{item.name}}</view>
+                    <view class="tournament-meta">
+                        <text>{{item.time}}</text>
+                        <text>{{item.location}}</text>
+                        <text class="result">{{item.result}}</text>
+                    </view>
+                </view>
+                <image class="arrow {{currentTournament.id === item.id ? 'arrow-down' : ''}}" 
+                       src="/images/arrow-right.png" />
+            </view>
+            
+            <!-- 展开的比赛记录 -->
+            <view class="match-records" wx:if="{{currentTournament.id === item.id}}">
+                <view class="match-item" wx:for="{{item.matches}}" wx:key="round" wx:for-item="match">
+                    <view class="match-round">{{match.round}}</view>
+                    <view class="match-info">
+                        <text>VS {{match.opponent}}</text>
+                        <text class="match-score">{{match.score}}</text>
+                        <text class="match-result {{match.result === '胜' ? 'win' : 'lose'}}">
+                            {{match.result}}
+                        </text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

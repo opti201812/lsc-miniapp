@@ -1,0 +1,442 @@
+.container {
+   min-height: 100vh;
+   background: #f5f5f5;
+   padding-bottom: 120rpx;
+}
+
+/* 页头区域 */
+.header {
+   background: #000;
+   color: #fff;
+   padding: 40rpx 30rpx;
+}
+
+.match-time {
+   text-align: center;
+   font-size: 24rpx;
+   margin-bottom: 30rpx;
+}
+
+.match-score {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.player {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 200rpx;
+}
+
+.avatar {
+   width: 120rpx;
+   height: 120rpx;
+   border-radius: 60rpx;
+   margin-bottom: 16rpx;
+}
+
+.name {
+   font-size: 32rpx;
+   font-weight: 500;
+}
+
+.score-box {
+   text-align: center;
+}
+
+.scores {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.score {
+   font-size: 64rpx;
+   font-weight: bold;
+   margin: 0 20rpx;
+}
+
+.divider {
+   font-size: 48rpx;
+   color: #666;
+}
+
+.status {
+   display: block;
+   font-size: 24rpx;
+   color: #999;
+   margin-top: 10rpx;
+}
+
+.score-actions {
+   margin-top: 10rpx;
+}
+
+.edit-score {
+   display: inline-flex;
+   align-items: center;
+   padding: 8rpx 20rpx;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 30rpx;
+   font-size: 24rpx;
+   color: #fff;
+}
+
+.edit-icon {
+   margin-right: 8rpx;
+   font-size: 28rpx;
+}
+
+/* 比分编辑弹窗 */
+.score-editor {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   z-index: 1000;
+   visibility: hidden;
+   opacity: 0;
+   transition: all 0.3s;
+}
+
+.score-editor.show {
+   visibility: visible;
+   opacity: 1;
+}
+
+.editor-mask {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, 0.7);
+}
+
+.editor-content {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   width: 600rpx;
+   background: #fff;
+   border-radius: 20rpx;
+   overflow: hidden;
+}
+
+.editor-header {
+   padding: 30rpx;
+   text-align: center;
+   font-size: 32rpx;
+   font-weight: bold;
+   border-bottom: 1rpx solid #eee;
+   position: relative;
+}
+
+.close-btn {
+   position: absolute;
+   right: 30rpx;
+   top: 50%;
+   transform: translateY(-50%);
+   font-size: 40rpx;
+   color: #999;
+   line-height: 1;
+}
+
+.editor-body {
+   padding: 40rpx 30rpx;
+}
+
+.player-score {
+   text-align: center;
+   margin-bottom: 30rpx;
+}
+
+.player-score:last-child {
+   margin-bottom: 0;
+}
+
+.player-name {
+   font-size: 28rpx;
+   color: #333;
+   margin-bottom: 20rpx;
+   display: block;
+}
+
+.score-control {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 30rpx;
+}
+
+.score-btn {
+   width: 60rpx;
+   height: 60rpx;
+   line-height: 56rpx;
+   text-align: center;
+   border: 2rpx solid #ddd;
+   border-radius: 30rpx;
+   font-size: 40rpx;
+   color: #666;
+}
+
+.score-value {
+   font-size: 48rpx;
+   font-weight: bold;
+   color: #333;
+   min-width: 80rpx;
+   text-align: center;
+}
+
+.score-divider {
+   text-align: center;
+   color: #999;
+   font-size: 28rpx;
+   margin: 20rpx 0;
+}
+
+.editor-footer {
+   display: flex;
+   border-top: 1rpx solid #eee;
+}
+
+.editor-footer button {
+   flex: 1;
+   margin: 0;
+   border-radius: 0;
+   font-size: 32rpx;
+}
+
+.cancel-btn {
+   background: #f5f5f5;
+   color: #666;
+}
+
+.confirm-btn {
+   background: #07c160;
+   color: #fff;
+}
+
+/* 评论区域 */
+.comments-section {
+   background: #fff;
+   padding: 30rpx;
+}
+
+.comment-list {
+   margin-top: 20rpx;
+}
+
+.comment-item {
+   display: flex;
+   margin-bottom: 30rpx;
+}
+
+.comment-avatar {
+   width: 80rpx;
+   height: 80rpx;
+   border-radius: 40rpx;
+   margin-right: 20rpx;
+}
+
+.comment-content {
+   flex: 1;
+}
+
+.comment-header {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 8rpx;
+}
+
+.comment-name {
+   font-size: 28rpx;
+   font-weight: 500;
+}
+
+.comment-time {
+   font-size: 24rpx;
+   color: #999;
+}
+
+.comment-text {
+   font-size: 28rpx;
+   color: #333;
+   line-height: 1.5;
+}
+
+/* 历史交锋 */
+.history-list {
+   background: #fff;
+   padding: 30rpx;
+}
+
+.history-item {
+   margin-bottom: 30rpx;
+   padding-bottom: 20rpx;
+   border-bottom: 1rpx solid #eee;
+}
+
+.history-item:last-child {
+   margin-bottom: 0;
+   padding-bottom: 0;
+   border-bottom: none;
+}
+
+.history-header {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 16rpx;
+}
+
+.tournament-name {
+   font-size: 28rpx;
+   color: #333;
+}
+
+.match-time {
+   font-size: 24rpx;
+   color: #999;
+}
+
+.history-detail {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.round {
+   font-size: 24rpx;
+   color: #666;
+   margin-bottom: 8rpx;
+}
+
+.score-info {
+   display: flex;
+   align-items: center;
+   gap: 20rpx;
+   font-size: 28rpx;
+}
+
+.score-info .winner {
+   font-weight: bold;
+}
+
+.score {
+   font-weight: bold;
+}
+
+/* 底部评论框 */
+.footer-action {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   padding: 20rpx 30rpx;
+   background: #fff;
+   box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.comment-input {
+   background: #f5f5f5;
+   border-radius: 36rpx;
+   padding: 16rpx 30rpx;
+}
+
+.comment-input input {
+   font-size: 28rpx;
+   color: #333;
+}
+
+/* 标签页 */
+.tabs {
+   display: flex;
+   background: #fff;
+}
+
+.tab {
+   flex: 1;
+   text-align: center;
+   padding: 30rpx 0;
+   font-size: 28rpx;
+   color: #666;
+   position: relative;
+}
+
+.tab.active {
+   color: #07c160;
+   font-weight: 500;
+}
+
+.tab.active::after {
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 40rpx;
+   height: 4rpx;
+   background: #07c160;
+   border-radius: 2rpx;
+}
+
+/* 竞猜区域 */
+.guess-section {
+   background: #fff;
+   padding: 30rpx;
+   margin-top: 20rpx;
+}
+
+.section-title {
+   font-size: 32rpx;
+   font-weight: bold;
+   color: #333;
+   margin-bottom: 20rpx;
+}
+
+.guess-options {
+   display: flex;
+   gap: 20rpx;
+   margin-bottom: 16rpx;
+}
+
+.guess-option {
+   flex: 1;
+   height: 120rpx;
+   background: #f5f5f5;
+   border-radius: 12rpx;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   overflow: hidden;
+}
+
+.guess-option.selected {
+   background: rgba(7, 193, 96, 0.1);
+   border: 2rpx solid #07c160;
+}
+
+.guess-option .player-name {
+   font-size: 32rpx;
+   color: #333;
+   margin-bottom: 8rpx;
+   font-weight: 500;
+}
+
+.guess-option .vote-percent {
+   font-size: 24rpx;
+   color: #666;
+}
+
+.vote-count {
+   font-size: 24rpx;
+   color: #999;
+   text-align: center;
+   display: block;
+}

@@ -1,0 +1,60 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/history/index",
+        "pages/highlights/index",
+        "pages/profile/index",
+        "pages/profile/competition/index",
+        "pages/profile/referee/index",
+        "pages/tournament/detail/index",
+        "pages/tournament/register/confirm/index",
+        "pages/match/record/index",
+        "pages/tournament/registered/index",
+        "pages/player/detail/index",
+        "pages/profile/collection/index",
+        "pages/match/detail/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "即时赛事",
+        "navigationBarTextStyle": "black"
+    },
+    "useExtendedLib": {
+        "weui": true
+    },
+    "tabBar": {
+        "custom": false,
+        "color": "#999999",
+        "selectedColor": "#07c160",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "焦点赛事",
+                "iconPath": "assets/icons/home.png",
+                "selectedIconPath": "assets/icons/home-active.png"
+            },
+            {
+                "pagePath": "pages/history/index",
+                "text": "历史战绩",
+                "iconPath": "assets/icons/history.png",
+                "selectedIconPath": "assets/icons/history-active.png"
+            },
+            {
+                "pagePath": "pages/highlights/index",
+                "text": "赛事集锦",
+                "iconPath": "assets/icons/video.png",
+                "selectedIconPath": "assets/icons/video-active.png"
+            },
+            {
+                "pagePath": "pages/profile/index",
+                "text": "我的",
+                "iconPath": "assets/icons/user.png",
+                "selectedIconPath": "assets/icons/user-active.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

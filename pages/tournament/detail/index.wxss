@@ -1,0 +1,561 @@
+.container {
+   min-height: 100vh;
+   background: #f5f5f5;
+   padding-bottom: 160rpx;
+}
+
+/* 页头区域 */
+.header {
+   background: #fff;
+}
+
+.banner {
+   width: 100%;
+   height: 400rpx;
+}
+
+.banner-image {
+   width: 100%;
+   height: 100%;
+}
+
+.info-section {
+   background: #fff;
+   padding: 30rpx;
+   margin-bottom: 20rpx;
+}
+
+.title {
+   font-size: 36rpx;
+   font-weight: bold;
+   color: #333;
+   margin-bottom: 20rpx;
+}
+
+.status-bar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 30rpx;
+}
+
+.status {
+   padding: 6rpx 20rpx;
+   border-radius: 6rpx;
+   font-size: 24rpx;
+   background: #f5f5f5;
+   color: #999;
+}
+
+.status-active {
+   background: rgba(7, 193, 96, 0.1);
+   color: #07c160;
+}
+
+.participants {
+   font-size: 24rpx;
+   color: #666;
+}
+
+.prize-section,
+.description-section,
+.rules-section {
+   background: #fff;
+   padding: 30rpx;
+   margin-top: 20rpx;
+}
+
+.section-title {
+   font-size: 32rpx;
+   font-weight: bold;
+   color: #333;
+   margin-bottom: 20rpx;
+   position: relative;
+   padding-left: 20rpx;
+}
+
+.section-title::before {
+   content: "";
+   position: absolute;
+   left: 0;
+   top: 50%;
+   transform: translateY(-50%);
+   width: 6rpx;
+   height: 28rpx;
+   background: #07c160;
+   border-radius: 3rpx;
+}
+
+.prize-content,
+.description-content,
+.rules-content {
+   color: #666;
+   font-size: 28rpx;
+   line-height: 1.6;
+   white-space: pre-line;
+}
+
+.prize-title {
+   font-size: 28rpx;
+   color: #666;
+   margin-bottom: 10rpx;
+}
+
+.prize-amount {
+   font-size: 48rpx;
+   font-weight: bold;
+   color: #f5222d;
+}
+
+.info-list {
+   margin-top: 30rpx;
+}
+
+.info-item {
+   display: flex;
+   margin-bottom: 20rpx;
+   line-height: 1.6;
+}
+
+.info-item .label {
+   color: #666;
+   width: 160rpx;
+   flex-shrink: 0;
+}
+
+.info-item .content {
+   flex: 1;
+   color: #333;
+}
+
+.detail-section {
+   background: #fff;
+   padding: 30rpx;
+   margin-bottom: 20rpx;
+}
+
+.content {
+   font-size: 28rpx;
+   color: #666;
+   line-height: 1.6;
+}
+
+.bottom-buttons {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   display: flex;
+   padding: 20rpx 30rpx;
+   background: #fff;
+   box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.btn-register,
+.btn-referee {
+   flex: 1;
+   height: 80rpx;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 40rpx;
+   font-size: 30rpx;
+   margin: 0 10rpx;
+}
+
+.btn-register {
+   background: #07c160;
+   color: #fff;
+}
+
+.btn-referee {
+   background: #fff;
+   color: #07c160;
+   border: 2rpx solid #07c160;
+}
+
+.footer-action {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   padding: 20rpx 30rpx;
+   background: #fff;
+   box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.upcoming-text {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 88rpx;
+   color: #999;
+   font-size: 28rpx;
+}
+
+.winners-list {
+   padding: 30rpx;
+   background: #fff;
+   margin-top: 20rpx;
+}
+
+.winner-item {
+   display: flex;
+   justify-content: space-between;
+   padding: 20rpx 0;
+   border-bottom: 1rpx solid #eee;
+}
+
+.winner-item:last-child {
+   border-bottom: none;
+}
+
+.rank {
+   color: #666;
+}
+
+.name {
+   flex: 1;
+   margin: 0 20rpx;
+}
+
+.prize {
+   color: #f5222d;
+   font-weight: bold;
+}
+
+.registered-count {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 20rpx 30rpx;
+   border-bottom: 1rpx solid #eee;
+   font-size: 28rpx;
+   color: #333;
+}
+
+.registered-count .arrow {
+   color: #999;
+   font-size: 28rpx;
+   margin-left: 10rpx;
+   transition: transform 0.3s;
+}
+
+.registered-count:active .arrow {
+   transform: translateX(4rpx);
+}
+
+.tournament-info {
+   background: #fff;
+   padding: 30rpx;
+   margin-top: 20rpx;
+}
+
+/* 标签页 */
+.tabs {
+   display: flex;
+   background: #fff;
+}
+
+.tab {
+   flex: 1;
+   text-align: center;
+   padding: 30rpx 0;
+   font-size: 28rpx;
+   color: #666;
+   position: relative;
+}
+
+.tab.active {
+   color: #07c160;
+   font-weight: 500;
+}
+
+.tab.active::after {
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 40rpx;
+   height: 4rpx;
+   background: #07c160;
+   border-radius: 2rpx;
+}
+
+/* 赛程安排标签页 */
+.schedule-list {
+   padding: 20rpx;
+}
+
+.round-group {
+   background: #fff;
+   border-radius: 12rpx;
+   margin-bottom: 20rpx;
+}
+
+.round-header {
+   padding: 20rpx;
+   border-bottom: 1rpx solid #eee;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.round-name {
+   font-size: 32rpx;
+   font-weight: bold;
+   color: #333;
+}
+
+.round-time {
+   font-size: 24rpx;
+   color: #999;
+}
+
+.match-list {
+   padding: 20rpx;
+}
+
+.match-item {
+   margin-bottom: 10rpx;
+}
+
+.match-item:last-child {
+   margin-bottom: 0;
+}
+
+.match-time {
+   font-size: 22rpx;
+   color: #999;
+}
+
+.match-info {
+   display: flex;
+   align-items: center;
+   margin-bottom: 16rpx;
+}
+
+.table-number {
+   font-size: 24rpx;
+   color: #666;
+   background: #f5f5f5;
+   padding: 4rpx 12rpx;
+   border-radius: 4rpx;
+}
+
+.match-row {
+   display: flex;
+   align-items: center;
+}
+
+.match-row[bindtap] {
+   cursor: pointer;
+}
+
+.table-info {
+   display: flex;
+   flex-direction: column;
+   font-size: 24rpx;
+   color: #666;
+   line-height: 1.2;
+   padding-right: 20rpx;
+   min-width: 120rpx;
+   position: relative;
+}
+
+.ongoing-icon {
+   position: absolute;
+   right: -10rpx;
+   top: 50%;
+   transform: translateY(-50%);
+   font-size: 20rpx;
+   color: #ff4d4f;
+   background: rgba(255, 77, 79, 0.1);
+   padding: 2rpx 8rpx;
+   border-radius: 4rpx;
+   white-space: nowrap;
+   display: flex;
+   align-items: center;
+}
+
+.ongoing-icon::before {
+   content: "";
+   display: inline-block;
+   width: 8rpx;
+   height: 8rpx;
+   background-color: #ff4d4f;
+   border-radius: 50%;
+   margin-right: 4rpx;
+   animation: blink 1s infinite;
+}
+
+@keyframes blink {
+   0% {
+      opacity: 1;
+   }
+   50% {
+      opacity: 0.4;
+   }
+   100% {
+      opacity: 1;
+   }
+}
+
+.match-players {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.player {
+   display: flex;
+   align-items: center;
+   flex: 1;
+}
+
+.player-info {
+   flex: 1;
+   display: flex;
+   align-items: center;
+}
+
+.player-name {
+   display: flex;
+   align-items: center;
+   font-size: 28rpx;
+   color: #333;
+}
+
+.player-name.winner {
+   font-weight: bold;
+}
+
+.level {
+   font-size: 24rpx;
+   color: #999;
+   font-weight: normal;
+}
+
+.player-level {
+   font-size: 24rpx;
+   color: #999;
+   margin-left: 8rpx;
+}
+
+.vs {
+   font-size: 24rpx;
+   color: #999;
+   margin: 0 20rpx;
+   flex-shrink: 0;
+}
+
+.match-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.players {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10rpx;
+   font-size: 28rpx;
+   color: #333;
+}
+
+.match-scores {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10rpx;
+   font-size: 28rpx;
+   font-weight: bold;
+   margin-top: 2rpx;
+}
+
+.score-divider {
+   color: #999;
+   padding: 0 10rpx;
+}
+
+.winner {
+   font-weight: bold;
+}
+
+.winner {
+   background-color: transparent;
+   border-radius: 0;
+}
+
+.winner .name {
+   font-weight: bold;
+}
+
+button[type="primary"] {
+   width: 100%;
+   height: 88rpx;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 32rpx;
+   border-radius: 44rpx;
+}
+
+.match {
+   background: white;
+   padding: 8rpx 12rpx;
+   margin: 6rpx 0;
+   border-radius: 6rpx;
+   box-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.1);
+}
+
+.match-time {
+   font-size: 22rpx;
+   color: #999;
+}
+
+.match-content {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.players {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10rpx;
+   font-size: 28rpx;
+   color: #333;
+}
+
+.match-scores {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10rpx;
+   font-size: 28rpx;
+   font-weight: bold;
+   margin-top: 2rpx;
+}
+
+.score-divider {
+   color: #999;
+   padding: 0 10rpx;
+}
+
+.winner {
+   font-weight: bold;
+}
+
+.winner {
+   background-color: transparent;
+   border-radius: 0;
+}
+
+.winner .name {
+   font-weight: bold;
+}

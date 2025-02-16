@@ -1,0 +1,38 @@
+<view class="user-container">
+    <view wx:if="{{loading}}" class="loading">
+        <text>加载中...</text>
+    </view>
+    
+    <block wx:else>
+        <!-- 未登录状态 -->
+        <view wx:if="{{!isLoggedIn}}" class="login-section">
+            <text class="tips">请登录后查看个人信息</text>
+            <button class="login-btn" bindtap="handleLogin">登录</button>
+        </view>
+
+        <!-- 已登录状态 -->
+        <view wx:else class="user-info">
+            <view class="avatar-section">
+                <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+                <text class="name">{{userInfo.name}}</text>
+            </view>
+            
+            <view class="info-section">
+                <view class="info-item">
+                    <text class="label">级别</text>
+                    <text class="value">{{userInfo.level}}</text>
+                </view>
+                <view class="info-item">
+                    <text class="label">已报名赛事</text>
+                    <text class="value">{{userInfo.registeredTournaments}}</text>
+                </view>
+                <view class="info-item">
+                    <text class="label">积分</text>
+                    <text class="value">{{userInfo.totalPoints}}</text>
+                </view>
+            </view>
+
+            <button class="logout-btn" bindtap="handleLogout">退出登录</button>
+        </view>
+    </block>
+</view> 

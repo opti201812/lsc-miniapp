@@ -12,7 +12,8 @@
         "pages/tournament/registered/index",
         "pages/player/detail/index",
         "pages/profile/collection/index",
-        "pages/match/detail/index"
+        "pages/match/detail/index",
+        "pages/user/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -31,7 +32,7 @@
         "list": [
             {
                 "pagePath": "pages/index/index",
-                "text": "焦点赛事",
+                "text": "首页",
                 "iconPath": "assets/icons/home.png",
                 "selectedIconPath": "assets/icons/home-active.png"
             },

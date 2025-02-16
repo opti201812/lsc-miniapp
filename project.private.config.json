@@ -1,6 +1,7 @@
 {
     "projectname": "lsc-miniapp",
     "setting": {
-        "compileHotReLoad": true
+        "compileHotReLoad": false,
+        "urlCheck": false
     }
 }

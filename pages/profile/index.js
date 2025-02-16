@@ -1,9 +1,10 @@
+import { userService } from '../../functions/services/user'
+
 Page({
     data: {
-        userInfo: {
-            avatar: 'https://picsum.photos/120/120', // 用户头像
-            nickname: '激情燃烧的岁月' // 用户昵称
-        },
+        userInfo: null,
+        isLoggedIn: false,
+        loading: true,
         stats: {
             registered: 9,  // 已报名数量
             inGame: 2,      // 比赛中数量
@@ -49,14 +50,102 @@ Page({
         ]
     },
 
-    onLoad() {
-        // 加载用户信息
-        this.loadUserInfo();
+    async onLoad() {
+        this.checkLoginStatus()
     },
 
-    // 加载用户信息
-    loadUserInfo() {
-        // TODO: 从服务器获取用户信息
+    async onShow() {
+        // 每次显示页面时检查登录状态
+        this.checkLoginStatus()
+    },
+
+    async checkLoginStatus() {
+        try {
+            this.setData({ loading: true })
+            const isLoggedIn = userService.isLoggedIn()
+            this.setData({ isLoggedIn })
+
+            if (isLoggedIn) {
+                const userInfo = await userService.getUserInfo()
+                this.setData({ userInfo })
+            }
+        } catch (error) {
+            console.error('Get user info failed:', error)
+            wx.showToast({
+                title: '获取用户信息失败',
+                icon: 'none'
+            })
+        } finally {
+            this.setData({ loading: false })
+        }
+    },
+
+    async handleLogin() {
+        try {
+            this.setData({ loading: true })
+            await userService.doLogin()
+            await this.checkLoginStatus()
+            wx.showToast({
+                title: '登录成功',
+                icon: 'success'
+            })
+        } catch (error) {
+            console.error('Login failed:', error)
+            wx.showToast({
+                title: error.message || '登录失败',
+                icon: 'none'
+            })
+        } finally {
+            this.setData({ loading: false })
+        }
+    },
+
+    handleLogout() {
+        userService.logout()
+        this.setData({
+            isLoggedIn: false,
+            userInfo: null
+        })
+        wx.showToast({
+            title: '已退出登录',
+            icon: 'success'
+        })
+    },
+
+    // 跳转到比赛记录
+    navigateToCompetition() {
+        if (!this.data.isLoggedIn) {
+            wx.showToast({
+                title: '请先登录',
+                icon: 'none'
+            })
+            return
+        }
+        wx.navigateTo({ url: '/pages/profile/competition/index' })
+    },
+
+    // 跳转到裁判记录
+    navigateToReferee() {
+        if (!this.data.isLoggedIn) {
+            wx.showToast({
+                title: '请先登录',
+                icon: 'none'
+            })
+            return
+        }
+        wx.navigateTo({ url: '/pages/profile/referee/index' })
+    },
+
+    // 跳转到收藏
+    navigateToCollection() {
+        if (!this.data.isLoggedIn) {
+            wx.showToast({
+                title: '请先登录',
+                icon: 'none'
+            })
+            return
+        }
+        wx.navigateTo({ url: '/pages/profile/collection/index' })
     },
 
     // 跳转到编辑资料页面
@@ -71,16 +160,16 @@ Page({
         const { type } = e.currentTarget.dataset;
         switch (type) {
             case 'collection':
-                wx.navigateTo({ url: '/pages/profile/collection/index' });
+                this.navigateToCollection();
                 break;
             case 'competition':
-                wx.navigateTo({ url: '/pages/profile/competition/index' });
+                this.navigateToCompetition();
                 break;
             case 'awards':
                 wx.navigateTo({ url: '/pages/profile/awards/index' });
                 break;
             case 'referee':
-                wx.navigateTo({ url: '/pages/profile/referee/index' });
+                this.navigateToReferee();
                 break;
         }
     },

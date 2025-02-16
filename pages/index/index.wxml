@@ -22,9 +22,9 @@
   </view>
 
   <!-- 快捷菜单 -->
-  <view class="quick-menu">
+  <!-- <view class="quick-menu">
     <mp-grids grids="{{quickMenus}}" />
-  </view>
+  </view> -->
 
   <!-- 焦点赛事 -->
   <view class="section">
